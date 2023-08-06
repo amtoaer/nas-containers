@@ -1,0 +1,16 @@
+services:
+  container:
+    network_mode: bridge
+    image: lovechen/embyserver:latest
+    environment:
+      - UID=1000
+      - GID=1000
+      - GIDLIST=0
+    volumes:
+      - /home/amtoaer/.config/nas/emby:/config
+      - /home/amtoaer/Videos:/Videos
+    ports:
+      - 54319:8096
+    devices:
+      - /dev/dri:/dev/dri
+    restart: always

@@ -1,0 +1,22 @@
+services:
+  mcsm-daemon:
+    network_mode: bridge
+    build: .
+    container_name: mcsm-daemon
+    ports:
+      - "54316:24444"
+      - "25565:25565"
+    volumes:
+      - /home/amtoaer/.config/nas/minecraft/daemon:/opt/mcsmanager/daemon/data
+    restart: always
+  mcsm-web:
+    network_mode: bridge
+    image: alisaqaq/mcsmanager-web:9.9.0
+    container_name: mcsm-web
+    depends_on:
+      - "mcsm-daemon"
+    ports:
+      - "54315:23333"
+    volumes:
+      - /home/amtoaer/.config/nas/minecraft/web:/opt/mcsmanager/web/data
+    restart: always

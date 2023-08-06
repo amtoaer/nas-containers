@@ -1,0 +1,8 @@
+services:
+  container:
+    network_mode: host
+    build: .
+    volumes:
+      - /home/amtoaer/.config/nas/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - /home/amtoaer/.config/nas/caddy/data:/data
+    restart: always

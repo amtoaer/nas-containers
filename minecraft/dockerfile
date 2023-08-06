@@ -1,0 +1,8 @@
+FROM alisaqaq/mcsmanager-daemon:3.4.0
+
+RUN apt install -y wget && \
+    wget https://download.oracle.com/java/20/latest/jdk-20_linux-x64_bin.deb && \
+    apt install -y ./jdk-20_linux-x64_bin.deb && \
+    update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-20/bin/java 1 && \
+    update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-20/bin/javac 1 && \
+    update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk-20/bin/jar 1

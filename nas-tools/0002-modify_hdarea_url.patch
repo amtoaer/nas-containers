@@ -1,0 +1,34 @@
+From d6079a7301a52d799e2d30552a16d773974f39a3 Mon Sep 17 00:00:00 2001
+From: amtoaer <amtoaer@gmail.com>
+Date: Sat, 5 Aug 2023 19:28:41 +0800
+Subject: [PATCH] modify_hdarea_url
+
+---
+ app/plugins/modules/_autosignin/hdarea.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/app/plugins/modules/_autosignin/hdarea.py b/app/plugins/modules/_autosignin/hdarea.py
+index 032630a..2c9f2f0 100644
+--- a/app/plugins/modules/_autosignin/hdarea.py
++++ b/app/plugins/modules/_autosignin/hdarea.py
+@@ -9,7 +9,7 @@ class HDArea(_ISiteSigninHandler):
+     """
+     
+     # 匹配的站点Url，每一个实现类都需要设置为自己的站点Url
+-    site_url = "hdarea.co"
++    site_url = "hdarea.club"
+ 
+     # 签到成功
+     _success_text = "此次签到您获得"
+@@ -42,7 +42,7 @@ class HDArea(_ISiteSigninHandler):
+         html_res = RequestUtils(cookies=site_cookie,
+                                 headers=ua,
+                                 proxies=proxy
+-                                ).post_res(url="https://www.hdarea.co/sign_in.php", data=data)
++                                ).post_res(url="https://www.hdarea.club/sign_in.php", data=data)
+         if not html_res or html_res.status_code != 200:
+             self.error(f"签到失败，请检查站点连通性")
+             return False, f'【{site}】签到失败，请检查站点连通性'
+-- 
+2.41.0
+

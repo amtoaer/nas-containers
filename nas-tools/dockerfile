@@ -1,0 +1,11 @@
+FROM nastool/nas-tools:latest
+
+COPY 0001-use_cow.patch 0002-modify_hdarea_url.patch ./
+
+RUN apk add gcc musl-dev linux-headers && \
+    pip install reflink
+
+RUN git apply ./0001-use_cow.patch && \
+    git apply ./0002-modify_hdarea_url.patch && \
+    rm ./0001-use_cow.patch && \
+    rm ./0002-modify_hdarea_url.patch

@@ -1,0 +1,33 @@
+From 21e3757052b5c02e4d04cb2e0c8bce745806778f Mon Sep 17 00:00:00 2001
+From: amtoaer <amtoaer@gmail.com>
+Date: Sat, 5 Aug 2023 03:35:51 +0800
+Subject: [PATCH] use_cow
+
+---
+ app/utils/system_utils.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/app/utils/system_utils.py b/app/utils/system_utils.py
+index c0f9e6d..7a54457 100644
+--- a/app/utils/system_utils.py
++++ b/app/utils/system_utils.py
+@@ -10,6 +10,7 @@ from app.utils.exception_utils import ExceptionUtils
+ from app.utils.path_utils import PathUtils
+ from app.utils.types import OsType
+ from config import WEBDRIVER_PATH
++from reflink import reflink
+ 
+ 
+ class SystemUtils:
+@@ -114,7 +115,7 @@ class SystemUtils:
+         复制
+         """
+         try:
+-            shutil.copy2(os.path.normpath(src), os.path.normpath(dest))
++            reflink(os.path.normpath(src), os.path.normpath(dest))
+             return 0, ""
+         except Exception as err:
+             ExceptionUtils.exception_traceback(err)
+-- 
+2.38.5
+

@@ -1,0 +1,7 @@
+services:
+  container:
+    network_mode: bridge
+    ports:
+      - 54320:8088
+    image: easychen/cookiecloud:latest
+    restart: always

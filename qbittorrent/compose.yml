@@ -1,0 +1,17 @@
+services:
+  container:
+    network_mode: host
+    environment:
+      - UID=1000
+      - GID=1000
+      - UMASK=022
+      - TZ=Asia/Shanghai
+      - QB_WEBUI_PORT=54321
+      - QB_EE_BIN=false
+      - QB_TRACKERS_UPDATE_AUTO=true
+      - QB_TRACKERS_LIST_URL=https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt
+    volumes:
+      - /home/amtoaer/Downloads:/Downloads
+      - /home/amtoaer/.config/nas/qbittorrent:/config
+    image: johngong/qbittorrent:latest
+    restart: always

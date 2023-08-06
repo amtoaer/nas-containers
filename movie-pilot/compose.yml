@@ -1,0 +1,12 @@
+services:
+  container:
+    network_mode: bridge
+    ports:
+      - 54318:3000
+    volumes:
+      - /home/amtoaer/.config/nas/movie-pilot:/moviepilot
+      - /home/amtoaer/Downloads:/Downloads
+      - /home/amtoaer/Videos:/Videos
+    env_file:
+      - .env
+    image: jxxghp/moviepilot:latest

@@ -1,0 +1,17 @@
+services:
+  container:
+    network_mode: bridge
+    ports:
+      - 54317:3000
+    volumes:
+      - /home/amtoaer/.config/nas/nas-tools:/config
+      - /home/amtoaer/Downloads:/Downloads
+      - /home/amtoaer/Videos:/Videos
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=022
+      - NASTOOL_AUTO_UPDATE=false
+      - NASTOOL_CN_UPDATE=false
+    build: .
+    restart: always
