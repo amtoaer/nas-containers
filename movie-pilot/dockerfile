@@ -1,0 +1,10 @@
+FROM jxxghp/moviepilot:1.0.8
+
+COPY 0001-use-cow.patch ./
+
+RUN apt update && \
+    apt install -y gcc git && \
+    pip install reflink
+
+RUN git apply ./0001-use-cow.patch && \
+    rm ./0001-use-cow.patch

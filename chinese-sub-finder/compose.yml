@@ -4,14 +4,13 @@ services:
     volumes:
       - /home/amtoaer/.config/nas/chinese-sub-finder/browser:/root/.cache/rod/browser
       - /home/amtoaer/.config/nas/chinese-sub-finder/config:/config
-      - /home/amtoaer/Videos/Animes/动漫:/media/动漫
       - /home/amtoaer/Videos/Movies/动画电影:/media/动画电影
       - /home/amtoaer/Videos/Movies/外语电影:/media/外语电影
       - /home/amtoaer/Videos/TVs/儿童:/media/儿童
-      - /home/amtoaer/Videos/TVs/动漫:/media/动漫电视
       - /home/amtoaer/Videos/TVs/日韩剧:/media/日韩剧
       - /home/amtoaer/Videos/TVs/欧美剧:/media/欧美剧
       - /home/amtoaer/Videos/TVs/综艺:/media/综艺
+      - /home/amtoaer/Videos/TVs/动漫:/media/动漫
     environment:
       - PUID=1000
       - PGID=1000

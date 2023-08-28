@@ -1,0 +1,13 @@
+services:
+  flowerss:
+    image: indes/flowerss-bot:latest
+    volumes:
+      - /home/amtoaer/.config/nas/flowerss:/root/.flowerss
+    restart: always
+    network_mode: bridge
+    hostname: flowerss
+    container_name: flowerss
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"

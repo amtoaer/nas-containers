@@ -1,12 +1,39 @@
 services:
-  container:
+  moviepilot:
+    container_name: moviepilot
+    depends_on:
+      - qbittorrent
     network_mode: bridge
     ports:
       - 54318:3000
     volumes:
-      - /home/amtoaer/.config/nas/movie-pilot:/moviepilot
+      - /home/amtoaer/.config/nas/moviepilot/moviepilot:/moviepilot
+      - /home/amtoaer/.config/nas/moviepilot/config:/config
       - /home/amtoaer/Downloads:/Downloads
       - /home/amtoaer/Videos:/Videos
     env_file:
       - .env
-    image: jxxghp/moviepilot:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=022
+      - MOVIEPILOT_AUTO_UPDATE=false
+    build: .
+    restart: always
+  qbittorrent:
+    container_name: qbittorrent
+    network_mode: host
+    environment:
+      - UID=1000
+      - GID=1000
+      - UMASK=022
+      - TZ=Asia/Shanghai
+      - QB_WEBUI_PORT=54321
+      - QB_EE_BIN=false
+      - QB_TRACKERS_UPDATE_AUTO=true
+      - QB_TRACKERS_LIST_URL=https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt
+    volumes:
+      - /home/amtoaer/Downloads:/Downloads
+      - /home/amtoaer/.config/nas/qbittorrent:/config
+    image: johngong/qbittorrent:latest
+    restart: always

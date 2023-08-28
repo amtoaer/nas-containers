@@ -1,0 +1,33 @@
+From 767d27ad101d7291d8de8acc4caffff33b69acc0 Mon Sep 17 00:00:00 2001
+From: amtoaer <amtoaer@gmail.com>
+Date: Mon, 14 Aug 2023 00:23:17 +0800
+Subject: [PATCH] use cow
+
+---
+ app/utils/system.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/app/utils/system.py b/app/utils/system.py
+index a0ff172..a6477f7 100644
+--- a/app/utils/system.py
++++ b/app/utils/system.py
+@@ -7,6 +7,7 @@ from pathlib import Path
+ from typing import List, Union, Tuple
+ import psutil
+ from app import schemas
++from reflink import reflink
+ 
+ 
+ class SystemUtils:
+@@ -47,7 +48,7 @@ class SystemUtils:
+         复制
+         """
+         try:
+-            shutil.copy2(src, dest)
++            reflink(os.path.normpath(src), os.path.normpath(dest))
+             return 0, ""
+         except Exception as err:
+             print(str(err))
+-- 
+2.41.0
+
