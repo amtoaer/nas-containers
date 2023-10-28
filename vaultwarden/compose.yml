@@ -1,0 +1,15 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:1.29.2
+    volumes:
+      - /home/amtoaer/.config/nas/vaultwarden/:/data/
+    restart: always
+    network_mode: bridge
+    hostname: vaultwarden
+    ports:
+      - 54312:80
+    container_name: vaultwarden
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"

@@ -9,6 +9,10 @@ services:
     volumes:
       - /home/amtoaer/.config/nas/minecraft/daemon:/opt/mcsmanager/daemon/data
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
   mcsm-web:
     network_mode: bridge
     image: alisaqaq/mcsmanager-web:9.9.0
@@ -20,3 +24,7 @@ services:
     volumes:
       - /home/amtoaer/.config/nas/minecraft/web:/opt/mcsmanager/web/data
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"

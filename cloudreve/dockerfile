@@ -1,0 +1,7 @@
+FROM cloudreve/cloudreve:3.8.3
+
+ARG UID=1000 GID=1000
+
+RUN chown -R ${UID}:${GID} /cloudreve
+
+USER ${UID}:${GID}

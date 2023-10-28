@@ -1,0 +1,44 @@
+services:
+  cloudreve:
+    container_name: cloudreve
+    network_mode: bridge
+    ports:
+      - 54313:5212
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /home/amtoaer/Downloads/.Cloudreve:/data
+      - /home/amtoaer/Drives:/cloudreve/uploads
+      - /home/amtoaer/.config/nas/cloudreve/avatar:/cloudreve/avatar
+      - /home/amtoaer/.config/nas/cloudreve/config/cloudreve.db:/cloudreve/cloudreve.db
+      - /home/amtoaer/.config/nas/cloudreve/config/conf.ini:/cloudreve/conf.ini
+    depends_on:
+      - aria2
+    build:
+      context: .
+      args:
+        - UID=1000
+        - GID=1000
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+  aria2:
+    container_name: aria2
+    network_mode: bridge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+      - RPC_SECRET=amtoaer
+      - RPC_PORT=6800
+    volumes:
+      - /home/amtoaer/Downloads/.Cloudreve:/data
+      - /home/amtoaer/.config/nas/cloudreve/config/aria2:/config
+    image: p3terx/aria2-pro:latest
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"

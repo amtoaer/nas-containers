@@ -1,7 +1,8 @@
 services:
-  container:
+  emby:
+    container_name: emby
     network_mode: bridge
-    image: lovechen/embyserver:latest
+    image: lovechen/embyserver:4.7.14.0
     environment:
       - UID=1000
       - GID=1000
@@ -14,3 +15,7 @@ services:
     devices:
       - /dev/dri:/dev/dri
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"

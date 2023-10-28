@@ -1,7 +1,12 @@
 services:
-  container:
+  cookiecloud:
+    container_name: cookiecloud
     network_mode: bridge
     ports:
       - 54320:8088
     image: easychen/cookiecloud:latest
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"

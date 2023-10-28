@@ -20,6 +20,10 @@ services:
       - MOVIEPILOT_AUTO_UPDATE=false
     build: .
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
   qbittorrent:
     container_name: qbittorrent
     network_mode: host
@@ -37,3 +41,7 @@ services:
       - /home/amtoaer/.config/nas/qbittorrent:/config
     image: johngong/qbittorrent:latest
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
